@@ -78,3 +78,6 @@ cd Frontend
 npm run dev
 Now open your browser and go to:
 👉 http://localhost:5173
+![Screenshot (93)](https://github.com/user-attachments/assets/1f8f8348-ef5e-4195-9436-d1977c52ef34)
+![Screenshot (92)](https://github.com/user-attachments/assets/a6837195-eb02-416d-afd0-007eef4dab04)
+![Screenshot (91)](https://github.com/user-attachments/assets/8c1ccb88-c9ce-44b1-92ba-f7d60921e7be)
