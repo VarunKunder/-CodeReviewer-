@@ -1,0 +1,339 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+.project-title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #ecdfcc;
+  font-family: "Fira Code", monospace;
+  padding: 0 60px; /* Leaves room for button on small screens */
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark Mode Styles */
+.chat-container.dark-mode {
+  background-color: #1e201e;
+  color: #ecdfcc;
+}
+
+.chat-container.light-mode {
+  background-color: #faf9f6;
+  color: #121212;
+}
+
+.new-chat-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #ecdfcc;
+  color: #1e201e;
+  border: none;
+  line-height: 1; /* Prevent vertical misalignment */
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 20px;
+  font-weight: 800;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease, font-size 0.3s ease; /* added font-size transition */
+  margin-top: 10px;
+}
+
+/* Dark Mode Toggle (Switch) */
+.dark-mode-toggle-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px; /* Increased width */
+  height: 34px; /* Increased height */
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ecdfcc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px; /* Increased circle size */
+  width: 26px; /* Increased circle size */
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: #ecdfcc;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px); /* Adjusted for bigger switch */
+}
+
+/* Chat Box */
+.chat-box {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 20px;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Message Bubbles */
+.message-bubble {
+  background-color: #3c3d37;
+  color: #ecdfcc;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 16px;
+  max-width: 75%;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.message-bubble.loading {
+  background-color: #666;
+  color: #ecdfcc;
+}
+
+.message.ai-message {
+  margin: 10px 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.message.user-message {
+  margin: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.message-bubble ul,
+.message-bubble ol {
+  padding-left: 20px; /* Control how far bullets are indented */
+  margin-left: 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  list-style-position: inside; /* Makes the bullet stay inside the container */
+}
+
+.message-bubble li {
+  margin-bottom: 6px; /* Add spacing between bullet items */
+}
+
+/* Typing Animation */
+.typing-animation {
+  background-color: #2d2d2d;
+  color: #ecdfcc;
+  font-style: italic;
+}
+
+.typing-animation:before {
+  content: "•••"; /* Show three dots */
+  animation: typing 1s infinite;
+}
+
+/* Keyframes for typing dots animation */
+@keyframes typing {
+  0% {
+    content: "•";
+  }
+  33% {
+    content: "••";
+  }
+  66% {
+    content: "•••";
+  }
+  100% {
+    content: "•";
+  }
+}
+
+/* Input Area */
+.input-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.input-area .input-box {
+  width: 50%;
+  min-height: 100px;
+  background-color: #3c3d37;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+  border-radius: 12px;
+  transition: height 0.3s ease;
+  overflow: hidden;
+}
+
+/* Editor */
+.editor-container {
+  flex-grow: 1;
+  margin-right: 10px;
+  overflow-y: auto;
+  height: 100%;
+  border: none;
+}
+
+.editor-container *:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Button */
+button.send-button {
+  background-color: #ecdfcc;
+  color: #121212;
+  border: none;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+button.send-button:hover {
+  background-color: #ecdfcc;
+}
+
+button.send-button:focus {
+  outline: none;
+}
+
+button.send-button.arrow {
+  background-color: #ecdfcc;
+  color: black;
+}
+
+button.send-button.square {
+  background-color: white;
+}
+
+button.send-button .arrow-icon {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+button.send-button .square-icon {
+  width: 15px;
+  height: 15px;
+  background-color: black;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .input-area .input-box {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px; /* Add spacing between editor and button */
+  }
+
+  .editor-container {
+    width: 100%;
+  }
+
+  button.send-button {
+    width: 50px; /* Keep it circular and fixed */
+    height: 50px;
+    align-self: flex-end; /* Align to the end (right side) */
+    margin-top: 0;
+  }
+}
+@media (max-width: 768px) {
+  .project-title {
+    @media (max-width: 768px) {
+      .project-title {
+        font-size: 5px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1000;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px); /* Slight upward slide */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message {
+  animation: fadeIn 0.4s ease-in-out;
+}
